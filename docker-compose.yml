@@ -1,0 +1,15 @@
+version: '2'
+services:
+ mesanger:
+  build:
+    context: ./
+    dockerfile: Dockerfile
+  ports:
+   - "4569:4569"
+    command: ["python","server_web/web_server.py"]
+
+  telegram_bot:
+    build:
+      context: ./
+      dockerfile: BOT
+    command: ["python","/BOT.py"]
