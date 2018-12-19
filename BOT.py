@@ -1,6 +1,6 @@
 import telebot
 from telebot import types
-bot = telebot.TeleBot("638688644:AAHL4FlM0InqWhi6WQCG4V1PVsiPO_w2fag")
+bot = telebot.TeleBot("Token")
 
 environment = ['/QA','/CPC_QA', '/CPC_Production', '/Stage', '/Demo']
 
