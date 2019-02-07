@@ -4,6 +4,7 @@ from telebot import types
 from core import authentication
 
 
+
 bot = telebot.TeleBot("638688644:AAHL4FlM0InqWhi6WQCG4V1PVsiPO_w2fag")
 environment = ['/QA','/CPC_QA', '/CPC_Production', '/Stage', '/Demo']
 
