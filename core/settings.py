@@ -1,2 +1,5 @@
 PatchToChangelog = "C:\Users\maksym.fillipov\PycharmProjects\\telegram_bot\core\CHANGELOG.md"
 PatchToJson = "C:\Users\maksym.fillipov\PycharmProjects\\telegram_bot\core\packeg.json"
+SkypeUser = "xmelayx@gmail.com"
+SkypePassword = "**************************"
+TestChat = "19:42bd94aef87c496c88067ae137c4b998@thread.skype"

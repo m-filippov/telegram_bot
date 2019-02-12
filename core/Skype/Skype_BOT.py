@@ -1,52 +1,43 @@
 # -*- coding: utf-8 -*-
 from skpy import Skype
 from skpy import SkypeAuthException
-from skpy import SkypeEventLoop
-from skpy import SkypeTextMsg
-import datetime
+from datetime import timedelta, datetime
 from core import changelog
 from core import settings
 
+def ConectToSkype():
 
-sk = Skype(connect=False)
-sk.conn.setTokenFile(".token")
-try:
-    sk.conn.readToken()
-except SkypeAuthException:
-    sk.conn.setUserPwd("xmelayx@gmail.com", "Zevs00807")
-    sk.conn.getSkypeToken()
-#        sk = Skype(tokenFile="/home/gitlab-runner/.tokens-fred.2")
-ch = sk.chats["19:42bd94aef87c496c88067ae137c4b998@thread.skype"]
-#get = sk.chats["19:42bd94aef87c496c88067ae137c4b998@thread.skype"].getMsgs()
-#ch.sendMsg("test")
-class MySkype(SkypeEventLoop):
-    def onEvent(self, event):
-        print(repr(event))
-
+    skype = Skype(connect=False)
+    skype.conn.setTokenFile(".token")
+    try:
+        skype.conn.readToken()
+    except SkypeAuthException:
+        skype.conn.setUserPwd(settings.SkypeUser, settings.SkypePassword)
+        skype.conn.getSkypeToken()
+    return skype
 
 def SendMassedge(massege,chats):
 
     chats.sendMsg(massege)
 
-def GetMassedge(chats):
-    skype = MySkype(tokenFile=".token", autoAck=True)
+def GetMessages(skype):
+    timeNow = datetime.now() - timedelta(hours=2, minutes=2)
+    msgsGet = skype.getMsgs()
+    #        print msgsGet[0].content
 
+    if len(msgsGet) and "$build" in msgsGet[0].content and msgsGet[0].time > timeNow:
+        SendMassedge("ok", skype)
+        changelog.ChangeLog(settings.PatchToChangelog)
+
+def StartBotSkype():
     while True:
-
-#        Event = str(chats.getMsgs())
-        date = skype.onEvent(chats.getMsgs())
-        print (date)
-
+        GetMessages(ConectToSkype().chats[settings.TestChat])
+    else:
+        ConectToSkype()
 
 
 
-
-#        if "$build" in Event:
-#                if tail in"".join(map(str, chats.getMsgs())):
-#                SendMassedge("ok", ch)
-#                changelog.ChangeLog(settings.PatchToChangelog)
-#        print Event
 
 #        print chats.getMsgs()
-GetMassedge(ch)
+StartBotSkype()
 #[SkypeNewMessageEvent(id=1057, type=u'NewMessage', time=datetime.datetime(2019, 2, 4, 16, 21, 55), msgId=1549297315934L)]
