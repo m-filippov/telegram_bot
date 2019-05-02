@@ -2,23 +2,6 @@
 
 # NEXT
 
-# v1.4.2-46
-
-# v1.4.2-46
-
-# v1.4.2-46
-
-# v1.4.2-46
-
-# v1.4.2-46
-
-# v1.4.2-46
-
-# v1.4.2-46
-
-# v1.4.2-46
-
-
 FIXED:
 * NECTAIN-922: CPC: PLN: SP: Execution: Procedure Tracking: Add the Forecast saving controls and Forecast duration grid
 * NECTAIN-941: APP: SRC: User role cannot open its grid
